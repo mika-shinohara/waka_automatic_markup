@@ -5,8 +5,9 @@ import MeCab
 import tempfile
 import os
 
-st.title("和歌XML変換ツール（MeCab自動句切れ判定）")
-st.write("Excelファイルをアップロードすると、自動で和歌を5・7・5・7・7に分割してXMLを生成します。")
+st.title("和歌XMLマークアップツール")
+st.write("Excelファイルをアップロードすると、自動で和歌をXML/TEIでマークアップします。")
+st.write("Excelファイルは、A列に歌集名、B列に詞書、C列に作者、D列に歌番号＋歌、E列に左注を記載してください。マークアップに必要ないものは空欄にしてください。D列の歌番号＋歌は、Web図書館の新編国歌大観を行ごとコピーしたまま貼り付けて認識可能です。")
 
 # ファイルアップロードウィジェット
 uploaded_file = st.file_uploader("Excelファイル（.xlsx）をアップロードしてください", type=["xlsx"])

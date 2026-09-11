@@ -6,9 +6,23 @@ import tempfile
 import os
 
 st.title("和歌XMLマークアップツール")
-st.write("Excelファイルをアップロードすると、自動で和歌をXML/TEIでマークアップします。")
+st.write("Excelファイルをアップロードすると、自動で和歌をXML/TEIでマークアップし、<back>用に出力します")
 st.write("Excelファイルは、A列に歌集名、B列に詞書、C列に作者、D列に歌番号＋歌、E列に左注を記載してください。マークアップに必要ないものは空欄にしてください。D列の歌番号＋歌は、Web図書館の新編国歌大観を行ごとコピーしたまま貼り付けて認識可能です。")
-
+st.write("和歌の句切れは間違っている可能性があるので、転記する際に改めてご確認ください。")
+with st.expander("📝 出力されるXMLデータの例"):
+    st.markdown("変換を実行すると、以下のような形式のXMLコードが出力され、テキストエリアからのコピーやファイルダウンロードができるようになります。")
+    
+    sample_xml = """<cit>
+                <quote>
+                   <lb/><note type="詞書" target="#和漢朗詠集238" style="margin-top: 3em">秋夜</note>
+                   <lb/><note type="作者" target="#和漢朗詠集238" style="margin-top: 12em">人丸</note>
+                   <lb/><l n="238" xml:id="和漢朗詠集238"><seg style="margin-top: 2em">あしびきの</seg><seg>やまどりのをの</seg><seg>しだりをの</seg><seg>ながながしよを</seg><seg>ひとりかもねむ</seg></l>
+                </quote>
+             </cit>"""
+    
+    # コードブロックとして綺麗にシンタックスハイライト付きで表示
+    st.code(sample_xml, language="xml")
+    
 # ファイルアップロードウィジェット
 uploaded_file = st.file_uploader("Excelファイル（.xlsx）をアップロードしてください", type=["xlsx"])
 sheet_name_input = st.text_input("シート名を入力してください", value="Sheet2")

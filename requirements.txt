@@ -1,0 +1,5 @@
+streamlit
+pandas
+openpyxl
+mecab-python3
+unidic-lite
